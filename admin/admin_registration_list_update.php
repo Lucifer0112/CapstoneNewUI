@@ -1,67 +1,124 @@
 <?php
-include '../admin/assets/config/dbconn.php'; // Include your database connection file
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', '../error/errordb.php'); // Ensure logs folder exists
+include '../admin/assets/config/dbconn.php'; // Include database connection
 
-if (isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $fname = $_POST['fname'];
-    $mname = $_POST['mname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $business_name = $_POST['business_name'];
-    $business_address = $_POST['business_address'];
-    $building_name = $_POST['building_name'];
-    $building_no = $_POST['building_no'];
-    $street = $_POST['street'];
-    $barangay = $_POST['barangay'];
-    $business_type = $_POST['business_type'];
-    $rent_per_month = $_POST['rent_per_month'];
-    $period_date = $_POST['period_date'];
-    $date_application = $_POST['date_application'];
-    $receipt = $_POST['receipt'];
-    $or_date = $_POST['or_date'];
-    $amount_paid = $_POST['amount_paid'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Debugging - Log received POST data
+    error_log("Received POST Data: " . print_r($_POST, true));
 
-    // Handle file uploads
-    $upload_dti = $_FILES['upload_dti']['name'];
-    $upload_store_picture = $_FILES['upload_store_picture']['name'];
-    $food_security_clearance = $_FILES['food_security_clearance']['name'];
+    // Get values safely
+    $id = $_POST['id'] ?? null;
+    $document_status = $_POST['document_status'] ?? '';
 
-    // Move uploaded files to a designated folder
-    move_uploaded_file($_FILES['upload_dti']['tmp_name'], "/user/assets/image/" . $upload_dti);
-    move_uploaded_file($_FILES['upload_store_picture']['tmp_name'], "/user/assets/image/" . $upload_store_picture);
-    move_uploaded_file($_FILES['food_security_clearance']['tmp_name'], "/user/assets/image/" . $food_security_clearance);
+    // Debugging - Check what is missing
+    $missing_fields = [];
+    if (!$id) $missing_fields[] = 'id';
+    if ($document_status === '') $missing_fields[] = 'document_status';
 
-    $query = "UPDATE registration SET 
-              fname='$fname',
-              mname='$mname',
-              lname='$lname',
-              email='$email',
-              phone='$phone',
-              address='$address',
-              business_name='$business_name',
-              business_address='$business_address',
-              building_name='$building_name',
-              building_no='$building_no',
-              street='$street',
-              barangay='$barangay',
-              business_type='$business_type',
-              rent_per_month='$rent_per_month',
-              period_date='$period_date',
-              date_application='$date_application',
-              receipt='$receipt',
-              or_date='$or_date',
-              amount_paid='$amount_paid',
-              upload_dti='$upload_dti',
-              upload_store_picture='$upload_store_picture',
-              food_security_clearance='$food_security_clearance'
-              WHERE id='$id'";
-
-    if (mysqli_query($conn, $query)) {
-        echo "User updated successfully.";
-    } else {
-        echo "Error updating record: " . mysqli_error($conn);
+    if (!empty($missing_fields)) {
+        die(json_encode([
+            "status" => "error",
+            "message" => "Error: Required fields are missing: " . implode(', ', $missing_fields)
+        ]));
     }
+    // Get values safely
+    $id = $_POST['id'] ?? null;
+    $fname = $_POST['fname'] ?? '';
+    $mname = $_POST['mname'] ?? '';
+    $lname = $_POST['lname'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+    $address = $_POST['address'] ?? '';
+    $zip = $_POST['zip'] ?? null;
+    $business_name = $_POST['business_name'] ?? '';
+    $business_address = $_POST['business_address'] ?? '';
+    $building_name = $_POST['building_name'] ?? '';
+    $building_no = $_POST['building_no'] ?? '';
+    $street = $_POST['street'] ?? '';
+    $barangay = $_POST['barangay'] ?? '';
+    $business_type = $_POST['business_type'] ?? '';
+    $rent_per_month = $_POST['rent_per_month'] ?? '';
+    $date_application = $_POST['date_application'] ?? '';
+    $application_number = $_POST['application_number'] ?? null;
+    $document_status = $_POST['document_status'] ?? ''; // Ensure variable is defined
+
+    // Validate required fields
+    if (!$id || !$zip || !$application_number || $document_status === '') {
+        die(json_encode(["status" => "error", "message" => "Error: Required fields are missing."]));
+    }
+
+    // File Upload Handling
+    $upload_dir = "../user/assets/image/";
+    $upload_dti = $upload_store_picture = $food_security_clearance = "";
+
+    function handleFileUpload($fileKey, $uploadDir) {
+        if (!empty($_FILES[$fileKey]['name'])) {
+            $fileName = time() . '_' . basename($_FILES[$fileKey]['name']); // Unique filename
+            $filePath = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $filePath)) {
+                return $fileName;
+            }
+        }
+        return null;
+    }
+
+    $upload_dti = handleFileUpload('upload_dti', $upload_dir);
+    $upload_store_picture = handleFileUpload('upload_store_picture', $upload_dir);
+    $food_security_clearance = handleFileUpload('food_security_clearance', $upload_dir);
+
+    // Use prepared statements to prevent SQL injection
+    $query = "UPDATE registration SET 
+              fname=?, mname=?, lname=?, email=?, phone=?, address=?, zip=?, 
+              business_name=?, business_address=?, building_name=?, building_no=?, street=?, 
+              barangay=?, business_type=?, rent_per_month=?, date_application=?, 
+              application_number=?, document_status=?";
+
+    // Append file fields dynamically
+    $params = [$fname, $mname, $lname, $email, $phone, $address, $zip, 
+               $business_name, $business_address, $building_name, $building_no, 
+               $street, $barangay, $business_type, $rent_per_month, $date_application, 
+               $application_number, $document_status];
+
+    $types = str_repeat("s", count($params)); // Prepare data types for bind_param
+
+    if ($upload_dti) {
+        $query .= ", upload_dti=?";
+        $params[] = $upload_dti;
+        $types .= "s";
+    }
+    if ($upload_store_picture) {
+        $query .= ", upload_store_picture=?";
+        $params[] = $upload_store_picture;
+        $types .= "s";
+    }
+    if ($food_security_clearance) {
+        $query .= ", food_security_clearance=?";
+        $params[] = $food_security_clearance;
+        $types .= "s";
+    }
+
+    $query .= " WHERE id=?";
+    $params[] = $id;
+    $types .= "s";
+
+    $stmt = mysqli_prepare($conn, $query);
+    
+    if (!$stmt) {
+        die(json_encode(["status" => "error", "message" => "SQL Error: " . mysqli_error($conn)]));
+    }
+
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+    
+    if (mysqli_stmt_execute($stmt)) {
+        echo json_encode(["status" => "success", "message" => "User updated successfully."]);
+    } else {
+        echo json_encode(["status" => "error", "message" => "Error updating record: " . mysqli_error($conn)]);
+    }
+
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
 }
 ?>

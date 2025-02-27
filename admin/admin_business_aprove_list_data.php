@@ -39,7 +39,7 @@ include('../admin/assets/inc/header.php');
 
 
 <?php 
-include('../employee/assets/inc/footer.php');
+include('../admin/assets/inc/footer.php');
 ?> 
 
 <script>
@@ -67,9 +67,8 @@ function displayRegisteredBusinessData() {
                         <th>Business Name</th>
                         <th>Business Address</th>
                         <th>Business Type</th>
-                        <th>Period of Date</th>
                         <th>Date of Application</th>
-                        <th>Document Status</th>
+                        <th>Application  Status</th>
                         <th>Permit Expiration</th>
                         <th>Actions</th>
                     </tr>
@@ -82,7 +81,6 @@ function displayRegisteredBusinessData() {
                     <td>${business.business_name}</td>
                     <td>${business.business_address}</td>
                     <td>${business.business_type}</td>
-                    <td>${business.period_date || 'N/A'}</td>
                     <td>${business.date_application}</td>
                     <td>${business.document_status}</td>
                     <td>${business.permit_expiration || 'N/A'}</td>

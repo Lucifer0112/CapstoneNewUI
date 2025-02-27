@@ -285,13 +285,24 @@ $pageName = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")
                 </li>
             </ul>-->
 
+            
 
 
+            <p class="text-muted-nav nav-heading mt-4 mb-1">
+                <span style="font-size: 10.5px; font-weight: bold; font-family: 'Inter', sans-serif;">APPOINTMENTS</span>
+            </p>
+
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="admin_appointment_calendar.php">
+                        <i class="fa-solid fa-calendar-days"></i> <!-- Use a calendar icon -->
+                        <span class="ml-3 item-text">Appointment Calendar</span>
+                    </a>
+                </li>
+            </ul>
 
 
-
-
-
+            
 
 
 
@@ -322,6 +333,19 @@ $pageName = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],"/")
                     <a class="nav-link" href="admin_business_aprove_list_data.php">
                         <i class="fa-solid fa-tv"></i>
                         <span class="ml-3 item-text">Registered Business</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <p class="text-muted-nav nav-heading mt-4 mb-1">
+                <span style="font-size: 10.5px; font-weight: bold; font-family: 'Inter', sans-serif;">APPOINTMENTS</span>
+            </p>
+
+            <ul class="navbar-nav flex-fill w-100 mb-2">
+                <li class="nav-item w-100">
+                    <a class="nav-link" href="admin_manage_appointments.php">
+                        <i class="fa-solid fa-calendar-check"></i> <!-- Use a calendar check icon -->
+                        <span class="ml-3 item-text">Manage Appointments</span>
                     </a>
                 </li>
             </ul>

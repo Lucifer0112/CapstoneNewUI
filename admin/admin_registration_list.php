@@ -209,92 +209,130 @@ include('../admin/assets/inc/header.php');
                 <h5 class="modal-title" id="updateModalLabel">Update Registration</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <input type="hidden" id="updateId">
-                <div class="mb-3">
-                    <label for="updateFirstname" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="updateFirstname">
-                </div>
-                <div class="mb-3">
-                    <label for="updateMiddlename" class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="updateMiddlename">
-                </div>
-                <div class="mb-3">
-                    <label for="updateLastname" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="updateLastname">
-                </div>
-                <div class="mb-3">
-                    <label for="updateEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="updateEmail">
-                </div>
-                <div class="mb-3">
-                    <label for="updatePhone" class="form-label">Phone</label>
-                    <input type="text" class="form-control" id="updatePhone">
-                </div>
-                <div class="mb-3">
-                    <label for="updateAddress" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="updateAddress">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBusinessName" class="form-label">Business Name</label>
-                    <input type="text" class="form-control" id="updateBusinessName">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBusinessAddress" class="form-label">Business Address</label>
-                    <input type="text" class="form-control" id="updateBusinessAddress">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBuildingName" class="form-label">Building Name</label>
-                    <input type="text" class="form-control" id="updateBuildingName">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBuildingNo" class="form-label">Building No</label>
-                    <input type="text" class="form-control" id="updateBuildingNo">
-                </div>
-                <div class="mb-3">
-                    <label for="updateStreet" class="form-label">Street</label>
-                    <input type="text" class="form-control" id="updateStreet">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBarangay" class="form-label">Barangay</label>
-                    <input type="text" class="form-control" id="updateBarangay">
-                </div>
-                <div class="mb-3">
-                    <label for="updateBusinessType" class="form-label">Business Type</label>
-                    <input type="text" class="form-control" id="updateBusinessType">
-                </div>
-                <div class="mb-3">
-                    <label for="updateRentPerMonth" class="form-label">Rent Per Month</label>
-                    <input type="text" class="form-control" id="updateRentPerMonth">
-                </div>
+            <form id="updateForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <input type="hidden" id="updateId" name="id">
+                    <div class="mb-3">
+                        <label for="updateFirstname" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="updateFirstname" name="fname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateMiddlename" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" id="updateMiddlename" name="mname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateLastname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="updateLastname" name="lname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="updateEmail" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updatePhone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="updatePhone" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="updateAddress" name="address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateZip" class="form-label">Zip Code</label>
+                        <input type="text" class="form-control" id="updateZip" name="zip" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBusinessName" class="form-label">Business Name</label>
+                        <input type="text" class="form-control" id="updateBusinessName" name="business_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBusinessAddress" class="form-label">Business Address</label>
+                        <input type="text" class="form-control" id="updateBusinessAddress" name="business_address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBuildingName" class="form-label">Building Name</label>
+                        <input type="text" class="form-control" id="updateBuildingName" name="building_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBuildingNo" class="form-label">Building No</label>
+                        <input type="text" class="form-control" id="updateBuildingNo" name="building_no">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateStreet" class="form-label">Street</label>
+                        <input type="text" class="form-control" id="updateStreet" name="street">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBarangay" class="form-label">Barangay</label>
+                        <input type="text" class="form-control" id="updateBarangay" name="barangay">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateBusinessType" class="form-label">Business Type</label>
+                        <input type="text" class="form-control" id="updateBusinessType" name="business_type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateRentPerMonth" class="form-label">Rent Per Month</label>
+                        <input type="text" class="form-control" id="updateRentPerMonth" name="rent_per_month">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateDateofApplication" class="form-label">Date of Application</label>
+                        <input type="date" class="form-control" id="updateDateofApplication" name="date_application">
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateApplicationNumber" class="form-label">Application Number</label>
+                        <input type="text" class="form-control" id="updateApplicationNumber" name="application_number" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="updateDocumentStatus" class="form-label">Document Status</label>
+                        <select class="form-control" id="updateDocumentStatus" name="document_status" disabled>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                        </select>
+                        <!-- Hidden input to include document_status in form submission -->
+                        <input type="hidden" name="document_status" id="hiddenDocumentStatus">
+                    </div>
+                    <!-- File upload fields here -->
+                                   <!-- DTI Document -->
+                    <div class="mb-3">
+                        <label for="updateUploadDti" class="form-label">Upload DTI</label>
+                        <input type="file" class="form-control" id="updateUploadDti" name="upload_dti" accept=".pdf,.jpg,.jpeg,.png">
+                        <div id="currentDti" class="mt-2">
+                            <strong>Current DTI:</strong>
+                            <img id="currentDtiImage" src="" alt="Current DTI" style="max-width: 100px; display: none;">
+                            <span id="currentDtiFileName"></span>
+                        </div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="updateDateofApplication" class="form-label">Date of Application</label>
-                    <input type="date" class="form-control" id="updateDateofApplication">
-                </div>
+                    <!-- Store Picture -->
+                    <div class="mb-3">
+                        <label for="updateUploadStorePicture" class="form-label">Upload Store Picture</label>
+                        <input type="file" class="form-control" id="updateUploadStorePicture" name="upload_store_picture" accept=".jpg,.jpeg,.png">
+                        <div id="currentStorePicture" class="mt-2">
+                            <strong>Current Store Picture:</strong>
+                            <img id="currentStorePictureImage" src="" alt="Current Store Picture" style="max-width: 100px;">
+                        </div>
+                    </div>
 
-                <!-- File Upload Inputs -->
-                <div class="mb-3">
-                    <label for="updateUploadDti" class="form-label">Upload DTI</label>
-                    <input type="file" class="form-control" id="updateUploadDti" accept=".pdf,.jpg,.jpeg,.png">
+                    <!-- Food Security Clearance -->
+                    <div class="mb-3">
+                        <label for="updateFoodSecurityClearance" class="form-label">Food Security Clearance</label>
+                        <input type="file" class="form-control" id="updateFoodSecurityClearance" name="food_security_clearance" accept=".pdf,.jpg,.jpeg,.png">
+                        <div id="currentFoodSecurityClearance" class="mt-2">
+                            <strong>Current Food Security Clearance:</strong>
+                            <img id="currentFoodSecurityClearanceImage" src="" alt="Current Food Security Clearance" style="max-width: 100px; display: none;">
+                            <span id="currentFoodSecurityClearanceFileName"></span>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="mb-3">
-                    <label for="updateUploadStorePicture" class="form-label">Upload Store Picture</label>
-                    <input type="file" class="form-control" id="updateUploadStorePicture" accept=".jpg,.jpeg,.png">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
-                <div class="mb-3">
-                    <label for="updateFoodSecurityClearance" class="form-label">Food Security Clearance</label>
-                    <input type="file" class="form-control" id="updateFoodSecurityClearance" accept=".pdf,.jpg,.jpeg,.png">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="updateUser()">Update</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<!-- End Update Registration Modal -->
+<!-- End Update Renewal Modal -->
+
 
 <!-- View Registration Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -368,26 +406,6 @@ include('../admin/assets/inc/header.php');
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -666,75 +684,72 @@ include('../admin/assets/inc/footer.php');
 
     // Function to get user details and populate the update modal
     function getdetails(updateid) {
-        $.post("admin_registration_get_details.php", {
-            updateid: updateid
-        }, function(data, status) {
-            var user = JSON.parse(data);
-            $('#updateId').val(user.id);
-            $('#updateFirstname').val(user.fname);
-            $('#updateMiddlename').val(user.mname);
-            $('#updateLastname').val(user.lname);
-            $('#updateEmail').val(user.email);
-            $('#updatePhone').val(user.phone);
-            $('#updateAddress').val(user.address);
-            $('#updateBusinessName').val(user.business_name);
-            $('#updateBusinessAddress').val(user.business_address);
-            $('#updateBuildingName').val(user.building_name);
-            $('#updateBuildingNo').val(user.building_no);
-            $('#updateStreet').val(user.street);
-            $('#updateBarangay').val(user.barangay);
-            $('#updateBusinessType').val(user.business_type);
-            $('#updateRentPerMonth').val(user.rent_per_month);
-            $('#updatePeriodofDate').val(user.period_date);
-            $('#updateDateofApplication').val(user.date_application);
-            $('#updateReceipt').val(user.receipt);
-            $('#updateOrDate').val(user.or_date);
-            $('#updateAmountPaid').val(user.amount_paid);
-            // Optionally set values for the uploaded files
-            $('#updateModal').modal("show");
-        });
-    }
+    $('#updateId').val(updateid);
 
-    // Function to update user details
-    function updateUser() {
-        var updateData = new FormData();
-        updateData.append('id', $('#updateId').val());
-        updateData.append('fname', $('#updateFirstname').val());
-        updateData.append('mname', $('#updateMiddlename').val());
-        updateData.append('lname', $('#updateLastname').val());
-        updateData.append('email', $('#updateEmail').val());
-        updateData.append('phone', $('#updatePhone').val());
-        updateData.append('address', $('#updateAddress').val());
-        updateData.append('business_name', $('#updateBusinessName').val());
-        updateData.append('business_address', $('#updateBusinessAddress').val());
-        updateData.append('building_name', $('#updateBuildingName').val());
-        updateData.append('building_no', $('#updateBuildingNo').val());
-        updateData.append('street', $('#updateStreet').val());
-        updateData.append('barangay', $('#updateBarangay').val());
-        updateData.append('business_type', $('#updateBusinessType').val());
-        updateData.append('rent_per_month', $('#updateRentPerMonth').val());
-        updateData.append('period_date', $('#updatePeriodofDate').val());
-        updateData.append('date_application', $('#updateDateofApplication').val());
-        updateData.append('receipt', $('#updateReceipt').val());
-        updateData.append('or_date', $('#updateOrDate').val());
-        updateData.append('amount_paid', $('#updateAmountPaid').val());
-        updateData.append('upload_dti', $('#updateUploadDti')[0].files[0]);
-        updateData.append('upload_store_picture', $('#updateUploadStorePicture')[0].files[0]);
-        updateData.append('food_security_clearance', $('#updateFoodSecurityClearance')[0].files[0]);
+    // Make an AJAX request to fetch the details for the selected user
+    $.post("admin_registration_get_details.php", {
+        updateid: updateid
+    }, function(data, status) {
+        var user = JSON.parse(data);
 
-        $.ajax({
-            url: "admin_registration_list_update.php",
-            type: 'post',
-            data: updateData,
-            contentType: false,
-            processData: false,
-            success: function(response) {
-                alert(response);
-                displayData();
-                $('#updateModal').modal("hide");
+        // Populate the form fields with the fetched user data
+        $('#updateFirstname').val(user.fname);
+        $('#updateMiddlename').val(user.mname);
+        $('#updateLastname').val(user.lname);
+        $('#updateEmail').val(user.email);
+        $('#updatePhone').val(user.phone);
+        $('#updateAddress').val(user.address);
+        $('#updateZip').val(user.zip);
+        $('#updateBusinessName').val(user.business_name);
+        $('#updateBusinessAddress').val(user.business_address);
+        $('#updateBuildingName').val(user.building_name);
+        $('#updateBuildingNo').val(user.building_no);
+        $('#updateStreet').val(user.street);
+        $('#updateBarangay').val(user.barangay);
+        $('#updateBusinessType').val(user.business_type);
+        $('#updateRentPerMonth').val(user.rent_per_month);
+        $('#updateDateofApplication').val(user.date_application);
+        $('#updateApplicationNumber').val(user.application_number);
+        $('#updateDocumentStatus').val(user.document_status);
+
+        // Populate the hidden input for document_status
+        $('#hiddenDocumentStatus').val(user.document_status);
+
+        // Disable the Document Status dropdown
+        $('#updateDocumentStatus').prop('disabled', true);
+
+        // Disable the Application Number input
+        $('#updateApplicationNumber').prop('readonly', true);
+
+        // Display previously uploaded files
+        if (user.upload_dti) {
+            if (user.upload_dti.endsWith('.pdf')) {
+                $('#currentDtiImage').hide();
+                $('#currentDtiFileName').text(user.upload_dti);
+            } else {
+                $('#currentDtiImage').attr('src', '../user/assets/image/' + user.upload_dti).show();
+                $('#currentDtiFileName').text('');
             }
-        });
-    }
+        }
+
+        if (user.upload_store_picture) {
+            $('#currentStorePictureImage').attr('src', '../user/assets/image/' + user.upload_store_picture).show();
+        }
+
+        if (user.food_security_clearance) {
+            if (user.food_security_clearance.endsWith('.pdf')) {
+                $('#currentFoodSecurityClearanceImage').hide();
+                $('#currentFoodSecurityClearanceFileName').text(user.food_security_clearance);
+            } else {
+                $('#currentFoodSecurityClearanceImage').attr('src', '../user/assets/image/' + user.food_security_clearance).show();
+                $('#currentFoodSecurityClearanceFileName').text('');
+            }
+        }
+    });
+
+    // Show the update modal
+    $('#updateModal').modal("show");
+}
 
 
 
@@ -887,17 +902,34 @@ include('../admin/assets/inc/footer.php');
             });
     }
 
-    // Event listener for updating document status
-    $(document).on('click', '.update-status-btn', function() {
-        var viewid = $('#hiddendata').val(); // Get the hidden input ID
-        var newStatus = $(this).data('status'); // Get the status from button data attribute
+    $(document).on("submit", "#updateForm", function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
 
-        if (viewid) {
-            updateDocumentStatus(viewid, newStatus);
-        } else {
-            alert("Error: Missing record ID.");
+    $.ajax({
+        type: "POST",
+        url: "admin_registration_list_update.php",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (response) {
+            if (response.status === "success") {
+                alert(response.message);
+                $('#updateModal').modal('hide');
+                filterData('All'); // Refresh the table
+            } else {
+                alert("Error: " + response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            alert("AJAX Error!\nStatus: " + status + 
+                "\nError: " + error + 
+                "\nServer Response: " + xhr.responseText);
         }
     });
+});
+
 </script>
 
 

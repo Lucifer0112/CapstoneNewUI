@@ -12,6 +12,8 @@ if ($status === 'All') {
               WHERE document_status = '$status'";
 }
 
+
+
 $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) > 0) {

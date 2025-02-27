@@ -186,3 +186,47 @@ if (isset($_POST['login'])) {
     exit(0);
 }
 ?> security ###
+\
+
+
+
+
+update details  i remove 
+
+    // Function to update user details
+    function updateUser() {
+        var updateData = new FormData();
+        updateData.append('id', $('#updateId').val());
+        updateData.append('fname', $('#updateFirstname').val());
+        updateData.append('mname', $('#updateMiddlename').val());
+        updateData.append('lname', $('#updateLastname').val());
+        updateData.append('email', $('#updateEmail').val());
+        updateData.append('phone', $('#updatePhone').val());
+        updateData.append('address', $('#updateAddress').val());
+        updateData.append('business_name', $('#updateBusinessName').val());
+        updateData.append('business_address', $('#updateBusinessAddress').val());
+        updateData.append('building_name', $('#updateBuildingName').val());
+        updateData.append('building_no', $('#updateBuildingNo').val());
+        updateData.append('street', $('#updateStreet').val());
+        updateData.append('barangay', $('#updateBarangay').val());
+        updateData.append('business_type', $('#updateBusinessType').val());
+        updateData.append('rent_per_month', $('#updateRentPerMonth').val());
+        updateData.append('date_application', $('#updateDateofApplication').val());
+        updateData.append('application_number', $('#updateapplication_number').val());
+        updateData.append('upload_dti', $('#updateUploadDti')[0].files[0]);
+        updateData.append('upload_store_picture', $('#updateUploadStorePicture')[0].files[0]);
+        updateData.append('food_security_clearance', $('#updateFoodSecurityClearance')[0].files[0]);
+
+        $.ajax({
+            url: "admin_registration_list_update.php",
+            type: 'post',
+            data: updateData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                alert(response);
+                displayData();
+                $('#updateModal').modal("hide");
+            }
+        });
+    }

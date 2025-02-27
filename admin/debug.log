@@ -130,3 +130,51 @@ POST Data: Array
     [application_status] => Released
 )
 
+POST Data: Array
+(
+    [viewid] =>   11 
+    [document_status] => Approved
+)
+
+POST Data: Array
+(
+    [viewid] =>   98 
+    [application_status] => Released
+)
+
+POST Data: Array
+(
+    [viewid] => 11
+    [document_status] => Rejected
+)
+
+POST Data: Array
+(
+    [viewid] =>   11 
+    [document_status] => Rejected
+)
+
+POST Data: Array
+(
+    [viewid] => 102
+    [document_status] => Rejected
+)
+
+POST Data: Array
+(
+    [viewid] => 102
+    [document_status] => Approved
+)
+
+POST Data: Array
+(
+    [viewid] => 45
+    [document_status] => Rejected
+)
+
+POST Data: Array
+(
+    [viewid] => 94
+    [document_status] => Approved
+)
+

@@ -1,72 +1,79 @@
 <?php 
-session_start();
 include('../admin/assets/config/dbconn.php');
 
 include('../admin/assets/inc/header.php');
 
-include('../admin/assets/inc/sidebar.php');
-
-include('../admin/assets/inc/navbar.php');
 
 ?> 
+
+<?= alertMessage(); ?>
    
 <!--data info-->
- <div class="card-info">
-    <a href="#">
-        <div class="card-data">
-            <i class='bx bxs-collection icon' ></i>
-            <div>
-                <h3>12345</h3>
-                <span>Total Collection</span>
-            </div>
+<div class="main">
+    <div class="box box-2">
+        <div class="box-details">
+            <h4>
+                <?= getCount('registration') ?>
+            </h4>
+            <span>Total Registrations</span>
         </div>
-    </a>
-    <a href="#">
-        <div class="card-data">
-            <i class='bx bxs-user-plus icon' ></i>
-            <div>
-                <h3>67890</h3>
-                <span>Total Registration</span>
-            </div>
+        <div class="box-icon">
+            <i class="fa-solid fa-user"></i>
         </div>
-    </a>
-    <a href="#">
-        <div class="card-data">
-            <i class='bx bxs-user-check icon' ></i>
-            <div>
-                <h3>02468</h3>
-                <span>Total Renewal</span>
-            </div>
+    </div>
+    <div class="box box-3">
+        <div class="box-details">
+            <h4>
+                <?= getCount('renewal') ?>
+            </h4>
+            <span>Total Renewals</span>
         </div>
-    </a>
-    <a href="#">
-        <div class="card-data">
-            <i class='bx bxs-business icon' ></i>
-            <div>
-                <h3>36912</h3>
-                <span>Total Business Categories</span>
-            </div>
+        <div class="box-icon">
+            <i class="fa-solid fa-user"></i>
         </div>
-    </a>
+    </div>
+    <div class="box box-2">
+        <div class="box-details">
+            <h4>
+                <?= getCount('employee') ?>
+            </h4>
+            <span>Total Employees</span>
+        </div>
+        <div class="box-icon">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </div>
+    <div class="box box-2">
+        <div class="box-details">
+            <h4>
+                <?= getCount('users') ?>
+            </h4>
+            <span>Total Users</span>
+        </div>
+        <div class="box-icon">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    </div>
 </div>
-<!--end data info-->
 
 
-<div class="data-card">
-    <div class="card">
-        <div class="card-header">
-            <h4>Registration and Renewal List</h4>
-        </div>
 
 
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12">
+
+
+<div class="fix-table-header" style="margin-top: 40px;">
+    <h4>Registration List</h4>
+</div>
+<div class="table-container-form">
+    <div class="table-container table-form">
+        <div class="table-body">
+            <table id="myTable">
+                <tbody>
                     <div id="displayDataTable">
                         <!-- admin_dashboard_list_displaydata -->
                     </div>
-                </div>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -168,6 +175,7 @@ include('../admin/assets/inc/footer.php');
         });
     }
     
+
 </script>
 
 </body>

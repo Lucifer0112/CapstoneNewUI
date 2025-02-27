@@ -75,6 +75,7 @@ if (isset($_POST['login'])) {
                 session_regenerate_id(true); // Regenerate session ID to prevent session fixation attacks
                 $_SESSION['auth'] = true;
                 $_SESSION['auth_role'] = $role_as;
+                $_SESSION['user_id'] = $user_id; // Ensure this is properly set
                 $_SESSION['auth_user'] = [
                     'user_id' => $user_id,
                     'user_name' => sanitizeInput($user_fname) . ' ' . sanitizeInput($user_lname),

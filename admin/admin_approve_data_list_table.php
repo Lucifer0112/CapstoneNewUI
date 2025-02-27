@@ -9,7 +9,6 @@ $query = "
         business_name, 
         business_address, 
         business_type, 
-        period_date, 
         date_application, 
         permit_expiration, 
         document_status,
@@ -27,7 +26,6 @@ $query = "
         business_name, 
         business_address, 
         business_type, 
-        period_date, 
         date_application, 
         permit_expiration, 
         document_status,
@@ -56,4 +54,3 @@ while ($row = mysqli_fetch_assoc($result)) {
 // Debugging output
 header('Content-Type: application/json');
 echo json_encode($businesses);
-?>
